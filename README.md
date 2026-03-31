@@ -6,23 +6,23 @@ Build beautiful payment dashboards on the Stellar blockchain!
 
 ## 🎯 What's This?
 This is a sleek, modern payment dApp built on the Stellar Testnet. It demonstrates:
-🎓 Learning Stellar blockchain development
-🚀 Creating a real Web3 payment interface
-💼 Securely signing transactions via Freighter
-🏆 Successfully completing the Stellar White Belt challenge
+- 🎓 Learning Stellar blockchain development
+- 🚀 Creating a real Web3 payment interface
+- 💼 Securely signing transactions via Freighter
+- 🏆 Successfully completing the Stellar White Belt challenge
 
 ---
 
 ## ✨ Features
 
-✅ **Wallet Connection** - Connect and disconnect securely using the latest Freighter API.
-✅ **Balance Display** - Real-time fetching of native XLM balances from the Stellar Testnet.
-✅ **Unfunded Account Handling** - Graceful fallback UI linking directly to the Stellar Friendbot if your account is unfunded.
-✅ **Send Payments** - Send XLM to any Stellar address in seconds with full transaction simulation.
-✅ **Transaction Status** - View the transaction result with clickable links to the Stellar Expert block explorer.
-✅ **Responsive Design** - Fully responsive, accessible, dark-mode ready interface built with Tailwind CSS.
-✅ **Error Handling** - User-friendly error messages for failed transactions or invalid addresses.
-✅ **TypeScript** - Full type safety across all components and API calls.
+- ✅ **Wallet Connection** - Connect and disconnect securely using the latest Freighter API.
+- ✅ **Balance Display** - Real-time fetching of native XLM balances from the Stellar Testnet.
+- ✅ **Unfunded Account Handling** - Graceful fallback UI linking directly to the Stellar Friendbot if your account is unfunded.
+- ✅ **Send Payments** - Send XLM to any Stellar address in seconds with full transaction simulation.
+- ✅ **Transaction Status** - View the transaction result with clickable links to the Stellar Expert block explorer.
+- ✅ **Responsive Design** - Fully responsive, accessible, dark-mode ready interface built with Tailwind CSS.
+- ✅ **Error Handling** - User-friendly error messages for failed transactions or invalid addresses.
+- ✅ **TypeScript** - Full type safety across all components and API calls.
 
 ---
 
