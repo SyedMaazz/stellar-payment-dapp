@@ -62,19 +62,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 ## 📸 Application Screenshots
 
 ### 1. Wallet connected state
-*(Take a screenshot showing your truncated address block e.g. `GDGH...QWOA` on the UI)*
 ![Wallet Connected](./screenshots/wallet-connected.jpeg)
 
 ### 2. Balance displayed
-*(Take a screenshot showing your 11,000.00 XLM balance card)*
 ![Balance Displayed](./screenshots/balance-displayed.jpeg)
 
 ### 3. Successful testnet transaction
-*(Take a screenshot after you click "Send XLM" when Freighter pops up asking for you to approve)*
 ![Testnet Transaction](./screenshots/testnet-transaction.jpeg)
 
 ### 4. The transaction result is shown to the user
-*(Take a screenshot showing the green "✅ Transaction Successful!" message and the transaction hash that appears at the bottom)*
 ![Transaction Result](./screenshots/transaction-result.jpeg)
 
 ---
