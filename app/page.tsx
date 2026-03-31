@@ -1,65 +1,58 @@
-import Image from "next/image";
+"use client";
+
+import { useWallet } from "../hooks/useWallet";
+import WalletConnect from "../components/WalletConnect";
+// We'll import these later in Phase 2 & 3
+// import BalancePanel from "../components/BalancePanel";
+// import SendForm from "../components/SendForm";
+// import TxStatus from "../components/TxStatus";
 
 export default function Home() {
+  const { address, error, connect, disconnect } = useWallet();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black p-4">
+      <main className="flex w-full max-w-2xl flex-col items-center justify-start py-8 px-6 sm:px-12 bg-white dark:bg-zinc-950 rounded-2xl shadow-xl shadow-zinc-200/50 dark:shadow-zinc-900/50 ring-1 ring-zinc-200 dark:ring-zinc-800">
+        
+        {/* Header */}
+        <div className="flex flex-col items-center gap-4 text-center sm:text-left sm:items-start w-full mb-10 border-b border-zinc-200 dark:border-zinc-800 pb-8">
+          <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50">
+            Stellar Payment <span className="text-indigo-600 dark:text-indigo-400">dApp</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-base text-zinc-500 dark:text-zinc-400 max-w-md">
+            Connect your Freighter wallet to check your balance and send XLM on the Stellar Testnet.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        {/* Modular Components Go Here */}
+        <div className="flex flex-col w-full gap-8">
+          
+          {/* Phase 1: Wallet Connection */}
+          <section className="flex flex-col w-full">
+            <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">1. Connect Wallet</h2>
+            <WalletConnect 
+              address={address} 
+              error={error} 
+              connect={connect} 
+              disconnect={disconnect} 
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </section>
+
+          {/* Placeholders for Future Phases */}
+          {address && (
+            <div className="w-full flex-col flex gap-8">
+              {/* Phase 2: BalancePanel goes here */}
+              {/* Phase 3 & 4: SendForm and TxStatus go here */}
+            </div>
+          )}
+
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="mt-12 text-center text-sm text-zinc-500">
+        🚀 Built for Stellar Journey to Mastery
+      </footer>
     </div>
   );
 }
