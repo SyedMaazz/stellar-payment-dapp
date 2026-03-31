@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stellar Payment dApp 🚀
 
-## Getting Started
+A full-stack Web3 application built for the **Stellar Journey to Mastery – White Belt Submission**. This dApp allows users to seamlessly connect their Freighter wallet, comfortably view their XLM balance, and send testnet XLM to friends instantly.
 
-First, run the development server:
+## 🌟 Features
+
+- **Freighter Wallet Integration**: Connect and disconnect securely using the latest Freighter API.
+- **Real-Time Balances**: Automatically fetches native XLM balances from the Stellar Testnet.
+- **Unfunded Account Handling**: Graceful fallback UI linking directly to the Stellar Friendbot if your account is unfunded.
+- **P2P Payments**: Send XLM to any Stellar address in seconds with full transaction simulation.
+- **Modern UI/UX**: Fully responsive, accessible, dark-mode ready interface built with Tailwind CSS.
+
+## 🛠️ Tech Stack
+
+- **Frontend Framework**: Next.js (App Router)
+- **Styling**: Tailwind CSS
+- **Blockchain SDK**: `@stellar/stellar-sdk`
+- **Wallet Provider**: `@stellar/freighter-api`
+- **Network**: Stellar Testnet (via Horizon)
+
+## 📦 Setup & Installation
+
+Follow these steps to run the project locally on your machine.
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- A chromium-based browser with the [Freighter Wallet Extension](https://www.freighter.app/) installed.
+- Ensure your Freighter wallet is set to **Testnet** mode.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/SyedMaazz/stellar-payment-dapp.git
+cd stellar-payment-dapp
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment Variables
+
+Create a `.env.local` file in the root directory and add the Stellar Horizon Testnet URL:
+
+```env
+NEXT_PUBLIC_HORIZON_URL=https://horizon-testnet.stellar.org
+```
+
+### 4. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📸 Application Screenshots
 
-## Learn More
+### 1. Wallet Connection
+*(Replace this placeholder with an image of the initial Connect Wallet UI)*
+`![Wallet Connection](./screenshots/wallet-connect.png)`
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Balance Display
+*(Replace this placeholder with an image showing your 11,000 XLM balance)*
+`![Balance Display](./screenshots/balance-display.png)`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Successful Transaction
+*(Replace this placeholder with an image showing the green success message and Tx Hash)*
+`![Successful Transaction](./screenshots/transaction-success.png)`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🤝 Submission Details
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is submitted as part of the **Stellar Journey to Mastery** program.
+- **Author:** Syed Maaz
+- **Network Used:** Stellar Testnet
