@@ -34,7 +34,10 @@ export default function SendForm({ address, onSuccess, onError, onRefreshBalance
       const xdr = await buildPaymentTransaction(address, recipient, amount);
 
       // 2. Ask the Freighter extension to sign it
-      const signedXdrResult = await signTransaction(xdr, { networkPassphrase: "Test SDF Network ; September 2015" });
+      const signedXdrResult = await signTransaction(xdr, { 
+        networkPassphrase: "Test SDF Network ; September 2015",
+        address: address
+      });
       
       // Early check for cancellation or error in the signature step
       if (signedXdrResult.error) {

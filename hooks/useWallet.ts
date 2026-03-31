@@ -4,9 +4,11 @@ import {
   checkConnection,
   connectFreighter,
 } from "../lib/freighter";
+import { getBalance } from "../lib/stellar";
 
 export const useWallet = () => {
   const [address, setAddress] = useState<string | null>(null);
+  const [balance, setBalance] = useState<string | null>(null);
   const [isInstalled, setIsInstalled] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -24,6 +26,20 @@ export const useWallet = () => {
     };
     init();
   }, []);
+
+  // Fetch balance whenever address changes
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (address) {
+        setBalance(null); // Set to null while loading
+        const bal = await getBalance(address);
+        setBalance(bal);
+      } else {
+        setBalance(null);
+      }
+    };
+    fetchBalance();
+  }, [address]);
 
   const connect = async () => {
     setError(null);
@@ -43,10 +59,12 @@ export const useWallet = () => {
     // Freighter doesn't have a built-in disconnect method that clears allowance,
     // so we just clear our local state
     setAddress(null);
+    setBalance(null);
   };
 
   return {
     address,
+    balance,
     isInstalled,
     error,
     connect,
