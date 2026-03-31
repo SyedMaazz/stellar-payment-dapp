@@ -1,14 +1,47 @@
 "use client";
 
+import { useState } from "react";
 import { useWallet } from "../hooks/useWallet";
 import WalletConnect from "../components/WalletConnect";
-// We'll import these later in Phase 2 & 3
-// import BalancePanel from "../components/BalancePanel";
-// import SendForm from "../components/SendForm";
-// import TxStatus from "../components/TxStatus";
+import BalancePanel from "../components/BalancePanel";
+import SendForm from "../components/SendForm";
+import TxStatus from "../components/TxStatus";
 
 export default function Home() {
-  const { address, error, connect, disconnect } = useWallet();
+  const { address, balance, error: walletError, connect, disconnect } = useWallet();
+
+  // Transaction Status State
+  const [txStatus, setTxStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [txHash, setTxHash] = useState<string>("");
+  const [txError, setTxError] = useState<string>("");
+
+  // Handler for successful transaction
+  const handleTxSuccess = (hash: string) => {
+    setTxStatus("success");
+    setTxHash(hash);
+    setTxError("");
+  };
+
+  // Handler for transaction errors
+  const handleTxError = (msg: string) => {
+    if (msg) {
+      setTxStatus("error");
+      setTxError(msg);
+      setTxHash("");
+    } else {
+      setTxStatus("idle");
+      setTxError("");
+      setTxHash("");
+    }
+  };
+
+  // Force re-fetch the balance by calling connect or we can just rely on auto-refresh.
+  // We'll simulate a refresh by calling connect again or disconnecting/connecting.
+  // Wait, if we keep the same address, `useWallet` automatically handles it via polling,
+  // but to immediately refresh, it's easier to just call `connect` to re-trigger.
+  const handleRefreshBalance = () => {
+    connect(); 
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 font-sans dark:bg-black p-4">
@@ -24,25 +57,51 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Modular Components Go Here */}
+        {/* Modular Components */}
         <div className="flex flex-col w-full gap-8">
           
-          {/* Phase 1: Wallet Connection */}
+          {/* Section 1: Wallet Connection */}
           <section className="flex flex-col w-full">
             <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">1. Connect Wallet</h2>
             <WalletConnect 
               address={address} 
-              error={error} 
+              error={walletError} 
               connect={connect} 
               disconnect={disconnect} 
             />
           </section>
 
-          {/* Placeholders for Future Phases */}
+          {/* Connected state: Balance and Sending */}
           {address && (
             <div className="w-full flex-col flex gap-8">
-              {/* Phase 2: BalancePanel goes here */}
-              {/* Phase 3 & 4: SendForm and TxStatus go here */}
+              
+              {/* Section 2: Your Balance */}
+              <section className="flex flex-col w-full animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">2. Your Balance</h2>
+                <BalancePanel balance={balance} />
+              </section>
+
+              {/* Section 3: Send XLM */}
+              {balance && balance !== "0.0000000" && (
+                <section className="flex flex-col w-full animate-in fade-in slide-in-from-bottom-4 duration-700">
+                  <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">3. Send Payment</h2>
+                  
+                  <SendForm 
+                    address={address}
+                    onSuccess={handleTxSuccess}
+                    onError={handleTxError}
+                    onRefreshBalance={handleRefreshBalance}
+                  />
+
+                  {/* Section 4: Transaction Status Feedback */}
+                  <TxStatus 
+                    status={txStatus} 
+                    hash={txHash} 
+                    errorMessage={txError} 
+                  />
+                  
+                </section>
+              )}
             </div>
           )}
 
